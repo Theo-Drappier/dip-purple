@@ -1,6 +1,5 @@
 <?php
 
-	use RedBeanPHP\R;
 	/**
 	 * It's the default road, which is use, it will redirect to the page index.php
 	 */
