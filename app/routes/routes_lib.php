@@ -13,3 +13,10 @@ $app->get('/lib/js/{nomFichier}', function($request, $response, $args){
   $view = ob_get_clean();
   return $view;
 });
+
+$app->get('/lib/img/{nomFichier}', function($request, $response, $args){
+  ob_start();
+  require 'lib/img/'.$args['nomFichier'];
+  $view = ob_get_clean();
+  return $view;
+});
