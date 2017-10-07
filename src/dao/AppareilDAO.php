@@ -1,5 +1,5 @@
 <?php
-namespace Dip\dao;
+namespace DIP\dao;
 use DIP\tools\dao;
 use RedBeanPHP\R;
 
