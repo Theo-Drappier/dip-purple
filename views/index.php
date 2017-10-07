@@ -54,14 +54,11 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="AdminLTE-2.4.0/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="AdminLTE-2.4.0/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                 <p>
                   Alexander Pierce
                 </p>
@@ -69,10 +66,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Profil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat">Se déconnecter</a>
                 </div>
               </li>
             </ul>
@@ -93,28 +90,26 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">NAVIGATION</li>
-        <li class="active treeview">
+        <li class="active">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Accueil</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-bolt"></i> <span>Consommation Pièces</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="AdminLTE-2.4.0/pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="AdminLTE-2.4.0/pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="AdminLTE-2.4.0/pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="AdminLTE-2.4.0/pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+            <li class=""><a href="index.php"><i class="fa fa-coffee"></i> Salon</a></li>
+            <li><a href="index.php"><i class="fa fa-bed"></i> Chambres</a></li>
+            <li><a href="index.php"><i class="fa fa-cutlery"></i> Cuisine</a></li>
+            <li><a href="index.php"><i class="fa fa-bath"></i> Salle de bain</a></li>
+            <li><a href="index.php"><i class="fa fa-desktop"></i> Bureau</a></li>
+            <li><a href="index.php"><i class="fa fa-tint"></i> Toilettes</a></li>
+            <li><a href="index.php"><i class="fa fa-car"></i> Garage</a></li>
           </ul>
         </li>
       </ul>
@@ -127,18 +122,21 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
+        PAGE D'ACCUEIL
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">Accueil</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <!-- Small boxes (Stat box) -->
+      <div class="row">
+          
+      </div>
+      
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
