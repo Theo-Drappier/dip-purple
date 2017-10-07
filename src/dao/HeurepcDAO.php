@@ -25,5 +25,3 @@ class HeurepcDAO extends dao
         return $result;
     }*/
 }
-?>
-
