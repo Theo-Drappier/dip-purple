@@ -5,11 +5,7 @@
 	 */
 	$app->get('/', function () use ($services){
 	    ob_start(); // start buffering HTML output
-
-		$testDao = $services['dao.fields']->findAll();
-		$testDao2 = $services['dao.fields']->getByName('Test');
-
-		require '../views/index.php';
+		require '../views/users/login.html';
 	    $view = ob_get_clean(); // assign HTML output to $view
 		return $view;
 	});
