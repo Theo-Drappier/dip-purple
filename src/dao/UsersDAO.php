@@ -21,5 +21,3 @@
             return self::$_instances['users'];
         }
     }
-
-?>
