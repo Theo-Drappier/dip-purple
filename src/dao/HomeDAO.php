@@ -1,6 +1,6 @@
 <?php
 
-namespace Dip\dao;
+namespace DIP\dao;
 use DIP\tools\dao;
 use RedBeanPHP\R;
 
@@ -18,11 +18,5 @@ class HomeDAO extends dao
         }
         return self::$_instances['home'];
      
-    }
-    public function getByName ($name)
-    {
-        $result = R::find($this->class, 'name = ?',[$name]);
-        return $result;
-    }
-            
+    }       
 }
