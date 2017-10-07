@@ -25,5 +25,3 @@ class HomePieceDAO extends dao
         return $result;
     }*/
 }
-?>
-
