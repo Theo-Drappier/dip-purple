@@ -3,8 +3,8 @@
     namespace DIP\dao;
     use RedBeanPHP\R;
     use DIP\tools\dao;
-    
-    class AbonnementDAO extends dao 
+
+    class AbonnementDAO extends dao
     {
         public function __construct()
         {
@@ -18,14 +18,10 @@
             }
             return self::$_instances['abonnement'];
         }
-        
-        public function findByMontant($montant)           
+
+        public function findByMontant($montant)
         {
           $abonnement = R::find($this->class, 'montant = '.$montant);
           return $abonnement;
         }
     }
-    
-    //put your code here
-    
-?>

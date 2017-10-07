@@ -3,8 +3,8 @@
     namespace DIP\dao;
     use RedBeanPHP\R;
     use DIP\tools\dao;
-    
-    class ActionDAO extends dao 
+
+    class ActionDAO extends dao
     {
         public function __construct()
         {
@@ -17,7 +17,5 @@
                 self::$_instances['action'] = new ActionDAO();
             }
             return self::$_instances['action'];
-            }         
+            }
     }
-        
-?>
