@@ -3,6 +3,9 @@
 use RedBeanPHP\R;
 
 R::setup('mysql:host=localhost;dbname=dip-purple_v0',
-         'YOUR_USERNAME', 'YOUR_PASSWORD');
+         'root', 'pwsio');
 
 //$services['dao.fields'] = \DIP\dao\FieldsDAO::getInstances();
+$services['dao.abonnement'] = \DIP\dao\AbonnementDAO::getInstances();
+$services['dao.action'] = \DIP\dao\ActionDAO::getInstances();
+  
