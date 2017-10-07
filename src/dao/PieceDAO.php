@@ -25,5 +25,3 @@ class PieceDAO extends dao
         return $result;
     }*/
 }
-?>
-

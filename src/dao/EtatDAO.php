@@ -25,5 +25,3 @@ class EtatDAO extends dao
         return $result;
     }*/
 }
-?>
-
