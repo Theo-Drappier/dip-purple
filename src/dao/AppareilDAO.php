@@ -1,22 +1,21 @@
 <?php
-
-namespace Dip\dao;
+namespace DIP\dao;
 use DIP\tools\dao;
 use RedBeanPHP\R;
 
-class HomeDAO extends dao
+class AppareilDAO extends dao
 {
     private function _construct()
     {
-        $this->class = 'home';
+        $this->class = 'appareil';
     }
     public static function getInstances() 
     {
-        if(!isset(self::$_instances['home']))
+        if(!isset(self::$_instances['appareil']))
         {
-            self::$_instances['home']= new HomeDAO();
+            self::$_instances['appareil']= new AppareilDAO();
         }
-        return self::$_instances['home'];
+        return self::$_instances['appareil'];
      
     }
     public function getByName ($name)
