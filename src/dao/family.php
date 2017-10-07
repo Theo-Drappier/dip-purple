@@ -18,11 +18,5 @@ class FamilyDAO extends dao
         }
         return self::$_instances['family'];
      
-    }
-    public function getByName ($name)
-    {
-        $result = R::find($this->class, 'name = ?',[$name]);
-        return $result;
-    }
-            
+    }            
 }
