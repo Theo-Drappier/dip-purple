@@ -20,4 +20,27 @@
             }
             return self::$_instances['users'];
         }
+
+        public function exists($mail, $password)
+        {
+            $pw = sha1($password);
+            $result = R::findOne($this->class, 'mail = ? AND mdp = ?', [$mail, $pw]);
+            return $result;
+        }
+
+        public function insert(array $newUser)
+        {
+            $user = R::dispense($this->class);
+            $user->prenom = $newUser['prenom'];
+            $user->nom = $newUser['nom'];
+            $user->tablette = $newUser['is_tablette'];
+            $user->pc = $newUser['is_pc'];
+            $user->heure_debut = $newUser['heureDebut'];
+            $user->heure_fin = $newUser['heureFin'];
+            $user->mail = $newUser['mail'];
+            $user->mdp = $newUser['password'];
+            $user->telephone = $newUser['telephone'];
+            R::store($user);
+            return '200';
+        }
     }
