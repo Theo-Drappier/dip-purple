@@ -10,6 +10,7 @@
         {
             $this->class = "abonnement";
         }
+
         public static function getInstances()
         {
             if(!isset(self::$_instances['abonnement']))
