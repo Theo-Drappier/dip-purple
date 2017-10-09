@@ -21,6 +21,9 @@
             return self::$_instances['users'];
         }
 
+        /*
+         * Verify if the user login is correct
+         */
         public function exists($mail, $password)
         {
             $pw = sha1($password);
@@ -28,6 +31,9 @@
             return $result;
         }
 
+        /*
+         * Insert a new user
+         */
         public function insert(array $newUser)
         {
             $user = R::dispense($this->class);
