@@ -10,6 +10,7 @@ class HomeDAO extends dao
     {
         $this->class = 'home';
     }
+    
     public static function getInstances()
     {
         if(!isset(self::$_instances['home']))
