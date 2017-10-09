@@ -9,7 +9,6 @@ session_start();
 
 $_SESSION['error'] = 200;
 
-//$services['dao.fields'] = \DIP\dao\FieldsDAO::getInstances();
 $services['dao.abonnement'] = \DIP\dao\AbonnementDAO::getInstances();
 $services['dao.action'] = \DIP\dao\ActionDAO::getInstances();
 $services['dao.users'] = \DIP\dao\UsersDAO::getInstances();
