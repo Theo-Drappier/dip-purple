@@ -3,7 +3,7 @@
 use RedBeanPHP\R;
 
 R::setup('mysql:host=localhost;dbname=dip-purple_v0',
-         'root', 'pwsio');
+         'root', 'Azersalina2000azeR');
 
 session_start();
 
@@ -19,3 +19,4 @@ $services['dao.heurepc'] = \DIP\dao\HeurepcDAO::getInstances();
 $services['dao.home'] = \DIP\dao\HomeDAO::getInstances();
 $services['dao.homepiece'] = \DIP\dao\HomePieceDAO::getInstances();
 $services['dao.piece'] = \DIP\dao\PieceDAO::getInstances();
+$services['dao.bareme'] = \DIP\dao\BaremeDAO::getInstances();
