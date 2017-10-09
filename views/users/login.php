@@ -4,13 +4,16 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="login"><b>Admin</b>LTE</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body bg-color">
     <p class="login-box-msg">Sign in to start your session</p>
     <?php if($_SESSION['error'] == 500) { ?>
-        <p>Erreur de login</p>
+        <p style="color: red;">Erreur de login</p>
+    <?php } ?>
+    <?php if($deco) { ?>
+        <p style="color: red;">Vous avez été déconnecté(e)</p>
     <?php } ?>
     <form action="connection" method="post">
       <div class="form-group has-feedback">

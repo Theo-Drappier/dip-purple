@@ -10,7 +10,7 @@ abstract class dao
 
     abstract public static function getInstances();
 
-    /** Send a request to the API to return all of the recording of one table
+    /** return all of the recording of one table
      * @return array
      */
     public function findAll(){
@@ -18,6 +18,9 @@ abstract class dao
         return $result;
     }
 
+    /*
+     * Return the recording which correspond to id of one table
+     */
     public function findOneById($id)
     {
         $result = R::findOne($this->class, 'id = ?', [$id]);
