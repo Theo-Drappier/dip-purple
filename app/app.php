@@ -3,7 +3,7 @@
 use RedBeanPHP\R;
 
 R::setup('mysql:host=localhost;dbname=dip-purple_v0',
-         'root', 'Azersalina2000azeR');
+         'root', 'pwsio');
 
 session_start();
 
