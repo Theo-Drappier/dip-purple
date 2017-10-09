@@ -6,7 +6,8 @@ use RedBeanPHP\R;
 
 class PieceDAO extends dao
 {
-    private function __construct(){
+    private function __construct()
+    {
         $this->class = "piece";
     }
 

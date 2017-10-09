@@ -17,5 +17,10 @@ abstract class dao
         $result = R::find($this->class);
         return $result;
     }
+
+    public function findOneById($id)
+    {
+        $result = R::findOne($this->class, 'id = ?', [$id]);
+        return $result;
+    }
 }
-?>

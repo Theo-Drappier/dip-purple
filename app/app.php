@@ -3,7 +3,11 @@
 use RedBeanPHP\R;
 
 R::setup('mysql:host=localhost;dbname=dip-purple_v0',
-         'root', 'pwsio');
+         'root', 'Azersalina2000azeR');
+
+session_start();
+
+$_SESSION['error'] = 200;
 
 //$services['dao.fields'] = \DIP\dao\FieldsDAO::getInstances();
 $services['dao.abonnement'] = \DIP\dao\AbonnementDAO::getInstances();
