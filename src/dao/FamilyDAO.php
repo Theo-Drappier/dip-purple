@@ -10,6 +10,7 @@ class FamilyDAO extends dao
     {
         $this->class = 'family';
     }
+    
     public static function getInstances()
     {
         if(!isset(self::$_instances['family']))
