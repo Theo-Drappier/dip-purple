@@ -20,6 +20,18 @@ class ActionDAO extends dao
         return self::$_instances['action'];
     }
 
+    public function getTotalConsoByFam($idFam)
+    {
+        $homePiece = new HomePieceDAO();
+        $homePieces = $homePiece->getByFam($idFam);
+
+        foreach($homePieces as $hp)
+        {
+            //$action = R::getAll("SELECT MAX(`date`) FROM ".$this->class." WHERE id_hp=".$hp->id);
+            //if()
+        }
+    }
+
     public function findLastActions($idHomePiece)
     {
         $action = R::getAll('SELECT * FROM action
@@ -54,7 +66,6 @@ class ActionDAO extends dao
             $dateTimeStart = $actions[1]['date'];
             $dateTimeEnd = $actions[0]['date'];
         }
-
 
         $dateTimeStartExplode = explode(' ', $dateTimeStart);
         $dateTimeEndExplode = explode(' ', $dateTimeEnd);
