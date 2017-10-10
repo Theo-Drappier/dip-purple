@@ -26,6 +26,9 @@
                 <p>
                   <?php echo $_SESSION['user']->prenom . ' ' . $_SESSION['famille']->nom_fam; ?>
                 </p>
+                <p>
+                    Vos points de chasses : <?php echo $_SESSION['userPoints']; ?>
+                </p>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">

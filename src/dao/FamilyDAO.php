@@ -33,6 +33,6 @@ class FamilyDAO extends dao
         }
 
         arsort($pointsUser);
-        return $pointsUser;
+        return array_keys($pointsUser);
     }
 }

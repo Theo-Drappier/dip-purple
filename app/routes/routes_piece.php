@@ -14,7 +14,7 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
         $actions = [];
         $etats = [];
         $consoPiece = 0;
-        
+
         for($i = 0; $i < sizeof($homepieces); $i++)
         {
             $actions[] = $services['dao.action']->findLastActions($homepieces[$i]->id);
@@ -33,9 +33,9 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
             /*if($bareme->id == 4){
                 $consoAppareils[] = ($heures * $appareil->conso_instant)*0.05;
             }else{*/
-                $consoAppareils[] = ($heures * $appareil->conso_instant);
+                $consoAppareils[] = ($heures * $appareil->conso_instant)/1000;
             //}
-            $consoPiece += ($heures * $appareil->conso_instant);
+            $consoPiece += ($heures * $appareil->conso_instant)/1000;
         }
         require '../views/piece.php';
         $view = ob_get_clean();

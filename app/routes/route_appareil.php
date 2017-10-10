@@ -10,7 +10,7 @@ $app->get('/appareil/{id}', function ($request, $response, $args) use ($services
         $homepiece = $services["dao.homepiece"]->findOneById($id);
         $piece = $services["dao.piece"]->findOneById($homepiece->id_piece);
         $appareil = $services["dao.appareil"]->findOneById($homepiece->id_app);
-		
+
         if(!empty($actions)){
 			$action = $actions[0];
 			$heures = $services['dao.action']->getDiffTime($actions);
@@ -53,5 +53,10 @@ $app->post('/appareil/insert', function($request, $response, $args) use($service
 			$services["dao.action"]->insert($action);
 		}
 	}
+
+
+	$actions = $services['dao.action']->findAllByUser($_SESSION['user']);
+	$_SESSION['userPoints'] = $services['dao.bareme']->getSumPointByUser($actions);
+
     return $response->withRedirect('../piece/'.$_POST["id_piece"]);
 });
