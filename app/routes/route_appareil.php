@@ -16,6 +16,14 @@
                 $appareil = $services["dao.appareil"]->findOneById($homepiece->id_app);
                 $bareme= $services["dao.bareme"]->findOneById($action->id_bareme);
                 $icone= $services["dao.icone"]->findOneById($appareil->id_ico);
+                
+                $pieces = $services['dao.piece']->getAll();
+                $iconesPieces = [];
+
+                for($i = 0; $i < sizeof($pieces); $i++){
+                    $icone = $services['dao.icone']->findOneById($pieces[$i]['id_ico']);
+                    $iconesPieces[] = $icone->icone;
+                }
 
                 require '../views/appareil.php';
                 $view = ob_get_clean();

@@ -44,6 +44,15 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
                 $consoPiece += 0;
             }
         }
+        
+        $pieces = $services['dao.piece']->getAll();
+        $iconesPieces = [];
+
+        for($i = 0; $i < sizeof($pieces); $i++){
+            $icone = $services['dao.icone']->findOneById($pieces[$i]['id_ico']);
+            $iconesPieces[] = $icone->icone;
+        }
+        
         require '../views/piece.php';
         $view = ob_get_clean();
         return $view;

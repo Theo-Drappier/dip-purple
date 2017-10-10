@@ -10,12 +10,12 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">NAVIGATION</li>
-          <li class="active">
-            <a href="#">
+          <li>
+            <a href="">
               <i class="fa fa-dashboard"></i> <span>Accueil</span>
             </a>
           </li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-bolt"></i> <span>Consommation Pièces</span>
               <span class="pull-right-container">
@@ -23,13 +23,13 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class=""><a href="index.php"><i class="fa fa-coffee"></i> Salon</a></li>
-              <li><a href="index.php"><i class="fa fa-bed"></i> Chambres</a></li>
-              <li><a href="index.php"><i class="fa fa-cutlery"></i> Cuisine</a></li>
-              <li><a href="index.php"><i class="fa fa-bath"></i> Salle de bain</a></li>
-              <li><a href="index.php"><i class="fa fa-desktop"></i> Bureau</a></li>
-              <li><a href="index.php"><i class="fa fa-tint"></i> Toilettes</a></li>
-              <li><a href="index.php"><i class="fa fa-car"></i> Garage</a></li>
+              <?php for($i = 0; $i < sizeof($pieces); $i++) { ?>
+                <?php if($pieces[$i]['id'] == $args['idPiece']) { ?>
+                    <li class="active"><a href="piece/<?php echo $pieces[$i]['id'] ?>"><i class="<?php echo $iconesPieces[$i]; ?>"></i><?php echo $pieces[$i]['libelle']; ?></a></li>
+                <?php }else{ ?>
+                    <li><a href="piece/<?php echo $pieces[$i]['id'] ?>"><i class="<?php echo $iconesPieces[$i]; ?>"></i><?php echo $pieces[$i]['libelle']; ?></a></li>
+                <?php } ?>
+              <?php } ?>
             </ul>
           </li>
         </ul>

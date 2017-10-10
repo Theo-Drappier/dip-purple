@@ -32,13 +32,30 @@
                             if(empty($actions2[$j]))
                             {
                                 $heures = 0;
+                                $bareme = null;
                             }
                             else {
                                 $heures = $services['dao.action']->getDiffTime($actions2[$j]);
+                                $bareme = $services['dao.bareme']->findOneById($actions2[$j][0]['id_bareme']);
                             }
+                            
                             $appareil = $services['dao.appareil']->findOneById($homepieces2[$j]->id_app);
-                            $consoAppareils[] = $heures * $appareil->conso_instant;
-                            $consoPiece += ($heures * $appareil->conso_instant);
+                            if($bareme != null){
+                                if($bareme->id == 4){
+                                    $consoAppareils[] = ($heures * $appareil->conso_instant)*0.05;
+                                    $consoPiece += ($heures * $appareil->conso_instant)*0.05;
+                                }else{
+                                    $consoAppareils[] = $heures * $appareil->conso_instant;
+                                    $consoPiece += ($heures * $appareil->conso_instant);
+                                
+                                }
+                            }else
+                            {
+                                $consoAppareils[] = 0;
+                                $consoPiece += 0;
+                            }
+                            
+                            
                         }
                        
                     }
@@ -55,12 +72,23 @@
                     if(empty($actions[$i]))
                     {
                         $heures = 0;
+                        $bareme = null;
                     }
                     else {
                         $heures = $services['dao.action']->getDiffTime($actions[$i]);
+                        $bareme = $services['dao.bareme']->findOneById($actions[$i][0]['id_bareme']);
                     }
                     $appareil = $services['dao.appareil']->findOneById($homepieces[$i]->id_app);
-                    $consoTotale += ($heures * $appareil->conso_instant);
+                    if($bareme != null){
+                        if($bareme->id == 4){
+                            $consoTotale += ($heures * $appareil->conso_instant)*0.05;
+                        }else{
+                            $consoTotale += ($heures * $appareil->conso_instant);
+                        }
+                    }else{
+                        $consoTotale += 0;
+                    }
+                    
                 }
                 
                 require '../views/index.php';
