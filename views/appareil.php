@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-
+    
     <!-- HEAD PAGE -->
-    <?php include('base/head.php'); ?>
-
+    <?php include('../views/base/head.php'); ?>
+    
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <!-- HEADER PAGE -->
-  <?php include('base/header.php'); ?>
-
+  <?php include('../views/base/header.php'); ?>
+  
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -31,9 +31,13 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <?php for($i = 0; $i < sizeof($pieces); $i++) { ?>
-              <li><a href="piece/<?php echo $pieces[$i]['id'] ?>"><i class="<?php echo $iconesPieces[$i]; ?>"></i><?php echo $pieces[$i]['libelle']; ?></a></li>
-            <?php } ?>
+            <li class=""><a href="index.php"><i class="fa fa-coffee"></i> Salon</a></li>
+            <li><a href="index.php"><i class="fa fa-bed"></i> Chambres</a></li>
+            <li><a href="index.php"><i class="fa fa-cutlery"></i> Cuisine</a></li>
+            <li><a href="index.php"><i class="fa fa-bath"></i> Salle de bain</a></li>
+            <li><a href="index.php"><i class="fa fa-desktop"></i> Bureau</a></li>
+            <li><a href="index.php"><i class="fa fa-tint"></i> Toilettes</a></li>
+            <li><a href="index.php"><i class="fa fa-car"></i> Garage</a></li>
           </ul>
         </li>
       </ul>
@@ -45,10 +49,10 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        PAGE D'ACCUEIL
-        <small>Control panel</small>
-      </h1>
+      <h2>
+        <?php echo $appareil->libelle ; ?>
+        <small><?php echo $piece->libelle ; ?></small>
+      </h2>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Accueil</li>
@@ -58,44 +62,59 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-          <center>
-              <h1 style="color: #3c8dbc; font-weight: bold;">CONSOMMATION QUOTIDIENNE DE LA FAMILLE : <?php echo $consoTotale/1000 ?> kW</h1><br><br>
-          </center>
+          <?php 
+          //var_dump($appareil); 
+          //var_dump($homepiece); 
+          //var_dump($action); 
+          //var_dump($bareme)
+          ?>
       </div>
-
+      
       <div class="row">
-          <?php for($i = 0; $i < sizeof($pieces); $i++) { ?>
-             <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <?php if(($consoPieces[$i]/1000) >= 10){ ?>
-                    <div class="small-box bg-red">
-                <?php }elseif(($consoPieces[$i]/1000) < 20 && ($consoPieces[$i]/1000) >= 5){ ?>
-                    <div class="small-box bg-yellow">
-                <?php }else{ ?>
-                    <div class="small-box bg-green">
-                <?php } ?>
-                  <div class="inner">
-                      <h3 id="kw-pieces-accueil" style="font-weight: bold;"><?php echo ($consoPieces[$i]/1000); ?> kW</h3>
-                    <h4><?php echo $pieces[$i]['libelle']; ?></h4>
-                  </div>
-                  <div class="icon">
-                    <!--<i class="ion ion-bag"></i>-->
-                      <i class="<?php echo $iconesPieces[$i]; ?>"></i>
-                  </div>
-                  <a href="piece/<?php echo $pieces[$i]['id'] ?>" class="small-box-footer">Plus d'infos <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
+        <div class="col-lg-6 col-xs-12">
+          <!-- small box -->
+          
+          <div class="small-box bg-green">
+              
+            <div class="inner">
+              <h3><?php echo($appareil->libelle); ?></h3>
+
+              <H2><?php echo($appareil->conso_quoti); ?> kW</H2>
             </div>
-          <?php } ?>
-        <!-- ./col -->
+            <div class="icon">
+              <i class="<?php echo($icone->icone) ?>"></i>
+            </div>
+              <form action="appareil/insert" method="post">
+                    <!-- Turn on the divice -->
+                    <INPUT type= "radio" name="statuApp" value=3 <?php if($action->id_bareme == 3) { echo 'checked="checked"'; } ?> >
+                    <label>Allumer</label> <br/>
+                    
+                    <!-- Only if standby mode is possible -->
+                    <?php if($appareil->veille == 1){ ?>
+                        <INPUT type= "radio" name="statuApp" value=4 <?php if($action->id_bareme == 4) { echo 'checked="checked"'; } ?> >
+                        <label>Mise en veille</label> <br/>
+                    <?php } ?>
+                        
+                    <!-- Turn offthe divice -->
+                    <INPUT type= "radio" name="statuApp" value=5 <?php if($action->id_bareme == 5) { echo 'checked="checked"'; } ?> >
+                    <label>Eteindre</label> <br/>
+                    <input type="hidden"  name="id_hp" value="<?php echo $homepiece->id; ?>" />
+                    <input type="submit" class="btn btn-primary" value="Valider" /> 
+                </form>
+              
+            <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+          </div>
+        </div>
+
       </div>
 
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+  
     <!-- FOOTER PAGE -->
-    <?php include('base/footer.php'); ?>
+    <?php include('../views/base/footer.php'); ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -294,7 +313,7 @@
 <!-- ./wrapper -->
 
     <!-- SCRIPT PAGE -->
-    <?php include('base/script.php'); ?>
+    <?php include('../views/base/script.php'); ?>
 
 </body>
 </html>
