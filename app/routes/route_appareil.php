@@ -26,8 +26,8 @@ $app->get('/appareil/{id}', function ($request, $response, $args) use ($services
             $iconesPieces = [];
 
             for($i = 0; $i < sizeof($pieces); $i++){
-                $icone = $services['dao.icone']->findOneById($pieces[$i]['id_ico']);
-                $iconesPieces[] = $icone->icone;
+                $icone1 = $services['dao.icone']->findOneById($pieces[$i]['id_ico']);
+                $iconesPieces[] = $icone1->icone;
             }
 
             require '../views/appareil.php';
