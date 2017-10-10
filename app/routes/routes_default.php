@@ -13,10 +13,13 @@
                 
                 $pieces = $services['dao.piece']->getAll();
                 $consoPieces = [];
+                $iconesPieces = [];
                 
                 for($i = 0; $i < sizeof($pieces); $i++){
                     $piece = $services['dao.piece']->findOneById($pieces[$i]['id']);
                     $homepieces2 = $services['dao.homepiece']->findAllByHomePiece($home->id, $piece->id);
+                    $icone = $services['dao.icone']->findOneById($piece->id_ico);
+                    $iconesPieces[] = $icone->icone;
                     
                     $actions2 = [];
                     $consoPiece = 0;
@@ -40,7 +43,6 @@
                        
                     }
                     $consoPieces[] = $consoPiece;
-                    //var_dump($pieces);
                 }
                 
                 $homepieces = $services['dao.homepiece']->findAllByHome($home->id);
