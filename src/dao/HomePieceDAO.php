@@ -19,9 +19,24 @@ class HomePieceDAO extends dao
         return self::$_instances['homepiece'];
     }
 
+    public function getByFam($idFam){
+        $homepieces = R::getAll('SELECT * FROM '.$this->class.' WHERE id_home = '.$idFam);
+        return $homepieces;
+        
+    }
     public function findAllByHomePiece($idHome, $idPiece)
     {
         $homepiece = R::findAll($this->class, 'id_home = ? AND id_piece = ?', [$idHome, $idPiece]);
+        $result = [];
+        foreach($homepiece as $hp)
+        {
+            $result[] = $hp;
+        }
+        return $result;
+    }
+    public function findAllByHome($idHome)
+    {
+        $homepiece = R::findAll($this->class, 'id_home = ?', [$idHome]);
         $result = [];
         foreach($homepiece as $hp)
         {

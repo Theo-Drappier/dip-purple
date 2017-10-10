@@ -19,6 +19,18 @@
             }
             return self::$_instances['action'];
         }
+        
+        public function getTotalConsoByFam($idFam)
+        {
+            $homePiece = new HomePieceDAO();
+            $homePieces = $homePiece->getByFam($idFam);
+            
+            foreach($homePieces as $hp)
+            {
+                //$action = R::getAll("SELECT MAX(`date`) FROM ".$this->class." WHERE id_hp=".$hp->id);
+                //if()
+            }
+        }
 
         public function findLastActions($idHomePiece)
         {
@@ -55,7 +67,7 @@
                 $dateTimeEnd = $actions[0]['date'];
             }
 
-
+            
             $dateTimeStartExplode = explode(' ', $dateTimeStart);
             $dateTimeEndExplode = explode(' ', $dateTimeEnd);
 
@@ -72,15 +84,19 @@
                         $dateStart[2] = $dateEnd[2];
                         $dateTimeStartExplode[1] = "00:00:00";
                         $dateTimeStartExplode[0] = $dateStart[0].'-'.$dateStart[1].'-'.$dateStart[2];
-                        $dateTimeStartFinal = $dateTimeStartExplode[0].' '.$dateTimeStartExplode[1];
+                        $dateTimeStart = $dateTimeStartExplode[0].' '.$dateTimeStartExplode[1];
                     }
                 }
-            }
-            $datetime1 = date_create($dateTimeStartFinal);
-            $datetime2 = date_create($dateTimeEnd);
-            $interval = date_diff($datetime1, $datetime2);
+                $datetime1 = date_create($dateTimeStart);
+                $datetime2 = date_create($dateTimeEnd);
+                $interval = date_diff($datetime1, $datetime2);
 
-            return $interval->h;
+                return $interval->h;
+            }else{
+                $interval = 0;
+                return $interval;
+            }
+            
 
         }
 

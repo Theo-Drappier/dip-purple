@@ -31,13 +31,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class=""><a href="index.php"><i class="fa fa-coffee"></i> Salon</a></li>
-            <li><a href="index.php"><i class="fa fa-bed"></i> Chambres</a></li>
-            <li><a href="index.php"><i class="fa fa-cutlery"></i> Cuisine</a></li>
-            <li><a href="index.php"><i class="fa fa-bath"></i> Salle de bain</a></li>
-            <li><a href="index.php"><i class="fa fa-desktop"></i> Bureau</a></li>
-            <li><a href="index.php"><i class="fa fa-tint"></i> Toilettes</a></li>
-            <li><a href="index.php"><i class="fa fa-car"></i> Garage</a></li>
+            <?php for($i = 0; $i < sizeof($pieces); $i++) { ?>
+              <li><a href="piece/<?php echo $pieces[$i]['id'] ?>"><i class="<?php echo $iconesPieces[$i]; ?>"></i><?php echo $pieces[$i]['libelle']; ?></a></li>
+            <?php } ?>
           </ul>
         </li>
       </ul>
@@ -62,69 +58,34 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-
+          <center>
+              <h1 style="color: #3c8dbc; font-weight: bold;">CONSOMMATION QUOTIDIENNE DE LA FAMILLE : <?php echo $consoTotale/1000 ?> kW</h1><br><br>
+          </center>
       </div>
 
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>150</h3>
-
-              <p>New Orders</p>
+          <?php for($i = 0; $i < sizeof($pieces); $i++) { ?>
+             <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <?php if(($consoPieces[$i]/1000) >= 10){ ?>
+                    <div class="small-box bg-red">
+                <?php }elseif(($consoPieces[$i]/1000) < 20 && ($consoPieces[$i]/1000) >= 5){ ?>
+                    <div class="small-box bg-yellow">
+                <?php }else{ ?>
+                    <div class="small-box bg-green">
+                <?php } ?>
+                  <div class="inner">
+                      <h3 id="kw-pieces-accueil" style="font-weight: bold;"><?php echo ($consoPieces[$i]/1000); ?> kW</h3>
+                    <h4><?php echo $pieces[$i]['libelle']; ?></h4>
+                  </div>
+                  <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                      <i class="<?php echo $iconesPieces[$i]; ?>"></i>
+                  </div>
+                  <a href="piece/<?php echo $pieces[$i]['id'] ?>" class="small-box-footer">Plus d'infos <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
             </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>User Registrations</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+          <?php } ?>
         <!-- ./col -->
       </div>
 
