@@ -19,4 +19,8 @@
             }
             return self::$_instances['action'];
         }
+        public function getPoint($idUser)
+        {
+            return R::find ('nbPoint','idUser='+$idUser)
+        }
     }
