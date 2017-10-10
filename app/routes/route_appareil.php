@@ -10,8 +10,8 @@ $app->get('/appareil/{id}', function ($request, $response, $args) use ($services
         $homepiece = $services["dao.homepiece"]->findOneById($id);
         $piece = $services["dao.piece"]->findOneById($homepiece->id_piece);
         $appareil = $services["dao.appareil"]->findOneById($homepiece->id_app);
-
-        if(is_null($actions)){
+		
+        if(!empty($actions)){
 			$action = $actions[0];
 			$heures = $services['dao.action']->getDiffTime($actions);
 			$consoAppareil = ($heures * $appareil->conso_instant) / 1000;

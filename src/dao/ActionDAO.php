@@ -6,7 +6,7 @@ use DIP\tools\dao;
 
 class ActionDAO extends dao
 {
-    public function __construct()
+    private function __construct()
     {
         $this->class = "action";
     }
