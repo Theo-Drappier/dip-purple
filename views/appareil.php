@@ -63,7 +63,7 @@
     <section class="content">
       <div class="row">
           <?php
-          if($action != null)
+          if(isset($action))
           {
               $idB =$action['id_bareme'];
           }

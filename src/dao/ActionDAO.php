@@ -88,6 +88,12 @@ class ActionDAO extends dao
 
     }
 
+    public function findAllByUser($user)
+    {
+        $actions = R::findAll($this->class, 'id_user = ?', [$user->id]);
+        return $actions;
+    }
+
     public function insert(array $action)
     {
         $newAction = R::dispense($this->class);

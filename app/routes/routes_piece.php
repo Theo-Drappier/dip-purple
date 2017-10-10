@@ -14,7 +14,7 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
         $actions = [];
         $etats = [];
         $consoPiece = 0;
-        
+
         for($i = 0; $i < sizeof($homepieces); $i++)
         {
             $actions[] = $services['dao.action']->findLastActions($homepieces[$i]->id);

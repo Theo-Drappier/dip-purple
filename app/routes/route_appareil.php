@@ -1,35 +1,35 @@
 <?php
 
-$app->get('/appareil/{id}', function ($request, $response, $args) use ($services){
-        //if user is connected -> display home page else redirect login page
-        if($_SESSION['is_user']){
-            ob_start();
-            $id = $args['id'];
-            $actions = $services["dao.action"]->findLastActions($id);
+$app->get('/appareil/{id}', function ($request, $response, $args) use ($services)
+{
+    //if user is connected -> display home page else redirect login page
+    if($_SESSION['is_user']){
+        ob_start();
+        $id = $args['id'];
+        $actions = $services["dao.action"]->findLastActions($id);
+        $homepiece = $services["dao.homepiece"]->findOneById($id);
+        $piece = $services["dao.piece"]->findOneById($homepiece->id_piece);
+        $appareil = $services["dao.appareil"]->findOneById($homepiece->id_app);
+
+        if(is_null($actions)){
 			$action = $actions[0];
-            $homepiece = $services["dao.homepiece"]->findOneById($id);
-            $piece = $services["dao.piece"]->findOneById($homepiece->id_piece);
-            $appareil = $services["dao.appareil"]->findOneById($homepiece->id_app);
-
-            if($action != null){
-				$heures = $services['dao.action']->getDiffTime($actions);
-				$consoAppareil = ($heures * $appareil->conso_instant) / 1000;
-                $bareme= $services["dao.bareme"]->findOneById($action['id_bareme']);
-            }else{
-				$consoAppareil = 0;
-                $bareme = $services["dao.bareme"]->findOneById(5);
-            }
-
-
-            $icone= $services["dao.icone"]->findOneById($appareil->id_ico);
-
-            require '../views/appareil.php';
-            $view = ob_get_clean();
-            return $view;
+			$heures = $services['dao.action']->getDiffTime($actions);
+			$consoAppareil = ($heures * $appareil->conso_instant) / 1000;
+            $bareme= $services["dao.bareme"]->findOneById($action['id_bareme']);
         }else{
-            return $response->withRedirect('login');
+			$consoAppareil = 0;
+            $bareme = $services["dao.bareme"]->findOneById(5);
         }
 
+
+        $icone= $services["dao.icone"]->findOneById($appareil->id_ico);
+
+        require '../views/appareil.php';
+        $view = ob_get_clean();
+        return $view;
+    }else{
+        return $response->withRedirect('login');
+    }
 });
 
 $app->post('/appareil/insert', function($request, $response, $args) use($services)
