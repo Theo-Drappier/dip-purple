@@ -19,6 +19,11 @@ class PieceDAO extends dao
         }
         return self::$_instances['piece'];
     }
+    
+    public function getAll(){
+        $result = R::getAll('SELECT * FROM '.$this->class);
+        return $result;
+    }
 
     /*public function getByName($name)
     {
