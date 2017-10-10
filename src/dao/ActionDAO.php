@@ -19,7 +19,7 @@
             }
             return self::$_instances['action'];
         }
-      
+
         public function findLastActions($idHomePiece)
         {
             $action = R::getAll('SELECT * FROM action
@@ -29,8 +29,7 @@
 
         public function findLastAction($idHomePiece)
         {
-            $action = R::findOne('SELECT * FROM action
-                WHERE id_hp = '.$idHomePiece.' ORDER BY date DESC');
+            $action = R::findOne($this->class, 'id_hp = '.$idHomePiece.' ORDER BY date DESC LIMIT 1');
             return $action;
         }
 
@@ -84,7 +83,7 @@
             return $interval->h;
 
         }
-        
+
         public function insert(array $action)
         {
             $newAction = R::dispense($this->class);
