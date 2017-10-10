@@ -20,3 +20,4 @@ $services['dao.home'] = \DIP\dao\HomeDAO::getInstances();
 $services['dao.homepiece'] = \DIP\dao\HomePieceDAO::getInstances();
 $services['dao.piece'] = \DIP\dao\PieceDAO::getInstances();
 $services['dao.bareme'] = \DIP\dao\BaremeDAO::getInstances();
+$services['dao.icone'] = \DIP\dao\IconeDAO::getInstances();

@@ -6,15 +6,15 @@
 	$app->get('/', function ($request, $response, $args) use ($services){
             //if user is connected -> display home page else redirect login page
             if($_SESSION['is_user']){
-                ob_start(); 
-                
+                ob_start();
+
                 $_SESSION['famille'] = $services['dao.family']->findOneById($_SESSION['user']->id);
-                
+
                 require '../views/index.php';
                 $view = ob_get_clean();
                 return $view;
             }else{
                 return $response->withRedirect('login');
             }
-        
+
 	});

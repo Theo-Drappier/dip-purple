@@ -24,4 +24,19 @@ class HomePieceDAO extends dao
         return $homepieces;
         
     }
+    public function findAllByHomePiece($idHome, $idPiece)
+    {
+        $homepiece = R::findAll($this->class, 'id_home = ? AND id_piece = ?', [$idHome, $idPiece]);
+        $result = [];
+        foreach($homepiece as $hp)
+        {
+            $result[] = $hp;
+        }
+        return $result;
+    }
+    /*public function getByName($name)
+    {
+        $result = R::find($this->class, 'name = ?',[$name]);
+        return $result;
+    }*/
 }
