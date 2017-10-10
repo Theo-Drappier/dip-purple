@@ -10,7 +10,7 @@ class HomeDAO extends dao
     {
         $this->class = 'home';
     }
-    
+
     public static function getInstances()
     {
         if(!isset(self::$_instances['home']))
@@ -19,5 +19,11 @@ class HomeDAO extends dao
         }
         return self::$_instances['home'];
 
+    }
+
+    public function findOneByIdFamily($idFamily)
+    {
+        $home = R::findOne($this->class, 'id_fam = ?', [$idFamily]);
+        return $home;
     }
 }

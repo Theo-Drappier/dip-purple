@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-    
+
     <!-- HEAD PAGE -->
     <?php include('base/head.php'); ?>
-    
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <!-- HEADER PAGE -->
   <?php include('base/header.php'); ?>
-  
+
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -62,9 +62,9 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-          
+
       </div>
-      
+
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -132,7 +132,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
+
     <!-- FOOTER PAGE -->
     <?php include('base/footer.php'); ?>
 
