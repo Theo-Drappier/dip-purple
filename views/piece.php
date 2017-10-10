@@ -48,27 +48,27 @@
                 </center><br><br>
                 <!-- start for -->
                 <?php for($i = 0; $i < sizeof($appareils); $i++) { ?>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-xs-12">
                         <div class="box box-success">
                             <div class="box-header">
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 col-xs-2">
                                         <i class="<?php
                                         $icone= $services["dao.icone"]->findOneById($appareils[$i]->id_ico);
                                         echo($icone->icone);
                                         ?> fa-2x" aria-hidden="true"></i>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <h2 class="box-title"><?php echo $appareils[$i]->libelle ?></h2>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-xs-4">
                                         <h3 style="color: green; font-weight: bold;"><?php echo $consoAppareils[$i] .' kW' ?></h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="box-body">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-xs-4">
                                         Etat :
                                         <?php
                                         if(is_null($etats[$i])) {
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-offset-4 col-md-4">
+                                    <div class="col-md-offset-4 col-md-4 col-xs-offset-4 col-xs-4">
                                         <a href="<?php echo "appareil/".$homepieces[$i]->id; ?>">
                                             <button class="btn btn-block btn-primary">Modifier</button>
                                         </a>
