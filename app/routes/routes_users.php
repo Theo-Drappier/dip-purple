@@ -27,7 +27,7 @@ $app->post('/connection', function ($request, $response, $args) use($app, $servi
 
     //connection to the user
     $user = $services['dao.users']->exists($mail, $password);
-    
+
     //if user is existing -> connection and redirect to home page
     if(!is_null($user))
     {

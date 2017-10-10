@@ -7,5 +7,7 @@ $services = [];
 require __DIR__.'/../app/app.php';
 require __DIR__.'/../app/routes/routes_default.php';
 require __DIR__.'/../app/routes/routes_users.php';
+require __DIR__.'/../app/routes/routes_piece.php';
+require __DIR__.'/../app/routes/route_appareil.php';
 
 $app->run();

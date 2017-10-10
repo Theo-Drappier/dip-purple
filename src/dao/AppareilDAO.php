@@ -24,5 +24,7 @@ class AppareilDAO extends dao
         $result = R::find($this->class, 'name = ?',[$name]);
         return $result;
     }
+    
+    
 
 }

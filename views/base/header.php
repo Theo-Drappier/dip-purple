@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index.php" class="logo">
+    <a href="" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>G'</b>GO</span>
       <!-- logo for regular state and mobile devices -->
@@ -26,15 +26,15 @@
                 <p>
                   <?php echo $_SESSION['user']->prenom . ' ' . $_SESSION['famille']->nom_fam; ?>
                 </p>
+                <p>
+                    Vos points de chasses : <?php echo $_SESSION['userPoints']; ?>
+                </p>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profil</a>
-                </div>
-                <div class="pull-right">
+                <center>
                   <a href="deconnexion" class="btn btn-default btn-flat">Se déconnecter</a>
-                </div>
+                </center>
               </li>
             </ul>
           </li>
