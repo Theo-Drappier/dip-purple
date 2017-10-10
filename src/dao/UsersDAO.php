@@ -7,7 +7,7 @@
 
     class UsersDAO extends dao
     {
-        public function __construct()
+        private function __construct()
         {
             $this->class = "users";
         }
@@ -29,6 +29,12 @@
             $pw = sha1($password);
             $result = R::findOne($this->class, 'mail = ? AND mdp = ?', [$mail, $pw]);
             return $result;
+        }
+
+        public function findAllByFamily($family)
+        {
+            $users = R::findAll($this->class, 'id_fam = ?', [$family->id]);
+            return $users;
         }
 
         /*

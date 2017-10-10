@@ -35,7 +35,6 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
             }else{*/
                 $consoAppareils[] = ($heures * $appareil->conso_instant);
             //}
-            
             $consoPiece += ($heures * $appareil->conso_instant);
         }
         require '../views/piece.php';
