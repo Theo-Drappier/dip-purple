@@ -8,8 +8,9 @@
             if($_SESSION['is_user']){
                 ob_start();
 
-                $_SESSION['famille'] = $services['dao.family']->findOneById($_SESSION['user']->id);
+                $_SESSION['famille'] = $services['dao.family']->findOneById($_SESSION['user']->id_fam);
                 $home = $services['dao.home']->findOneByIdFamily($_SESSION['famille']->id);
+
 
 				$actions = $services['dao.action']->findAllByUser($_SESSION['user']);
 				$_SESSION['userPoints'] = $services['dao.bareme']->getSumPointByUser($actions);
@@ -45,7 +46,7 @@
                                 $heures = $services['dao.action']->getDiffTime($actions2[$j]);
                                 $bareme = $services['dao.bareme']->findOneById($actions2[$j][0]['id_bareme']);
                             }
-                            
+
                             $appareil = $services['dao.appareil']->findOneById($homepieces2[$j]->id_app);
                             if($bareme != null){
                                 if($bareme->id == 4){
@@ -54,15 +55,15 @@
                                 }else{
                                     $consoAppareils[] = $heures * $appareil->conso_instant;
                                     $consoPiece += ($heures * $appareil->conso_instant);
-                                
+
                                 }
                             }else
                             {
                                 $consoAppareils[] = 0;
                                 $consoPiece += 0;
                             }
-                            
-                            
+
+
                         }
 
                     }
@@ -95,7 +96,7 @@
                     }else{
                         $consoTotale += 0;
                     }
-                    
+
                 }
 
                 require '../views/index.php';
