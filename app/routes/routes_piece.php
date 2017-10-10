@@ -22,6 +22,7 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
             {
                 $etats[] = null;
                 $heures = 0;
+                $bareme = null;
             }
             else {
                 $heures = $services['dao.action']->getDiffTime($actions[$i]);
@@ -30,8 +31,18 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
             }
             $appareil = $services['dao.appareil']->findOneById($homepieces[$i]->id_app);
             $appareils[] = $appareil;
-            $consoAppareils[] = $heures * $appareil->conso_instant;
-            $consoPiece += ($heures * $appareil->conso_instant);
+            if($bareme != null){
+                if($bareme->id == 4){
+                    $consoAppareils[] = ($heures * $appareil->conso_instant)*0.05;
+                    $consoPiece += ($heures * $appareil->conso_instant)*0.05;
+                }else{
+                    $consoAppareils[] = $heures * $appareil->conso_instant;
+                    $consoPiece += ($heures * $appareil->conso_instant);
+                }
+            }else{
+                $consoAppareils[] = 0;
+                $consoPiece += 0;
+            }
         }
         require '../views/piece.php';
         $view = ob_get_clean();
