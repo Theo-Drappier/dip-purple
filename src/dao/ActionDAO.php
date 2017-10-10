@@ -19,4 +19,16 @@
             }
             return self::$_instances['action'];
         }
+        
+        public function getTotalConsoByFam($idFam)
+        {
+            $homePiece = new HomePieceDAO();
+            $homePieces = $homePiece->getByFam($idFam);
+            
+            foreach($homePieces as $hp)
+            {
+                //$action = R::getAll("SELECT MAX(`date`) FROM ".$this->class." WHERE id_hp=".$hp->id);
+                //if()
+            }
+        }
     }
