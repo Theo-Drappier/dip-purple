@@ -53,7 +53,10 @@
                             <div class="box-header">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <i class="fa fa-battery-full fa-2x" aria-hidden="true"></i>
+                                        <i class="<?php 
+                                        $icone= $services["dao.icone"]->findOneById($appareils[$i]->id_ico);
+                                        echo($icone->icone);
+                                        ?> fa-2x" aria-hidden="true"></i>
                                     </div>
                                     <div class="col-md-6">
                                         <h2 class="box-title"><?php echo $appareils[$i]->libelle ?></h2>
