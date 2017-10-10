@@ -49,10 +49,6 @@
         <?php echo $appareil->libelle ; ?>
         <small><?php echo $piece->libelle ; ?></small>
       </h2>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Accueil</li>
-      </ol>
     </section>
 
     <!-- Main content -->
