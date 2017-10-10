@@ -19,7 +19,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">NAVIGATION</li>
         <li class="active">
-          <a href="#">
+          <a href="">
             <i class="fa fa-dashboard"></i> <span>Accueil</span>
           </a>
         </li>

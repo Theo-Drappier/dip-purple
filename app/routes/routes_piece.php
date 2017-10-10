@@ -22,6 +22,7 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
             {
                 $etats[] = null;
                 $heures = 0;
+                $bareme = null;
             }
             else {
                 $heures = $services['dao.action']->getDiffTime($actions[$i]);
@@ -30,13 +31,28 @@ $app->get('/piece/{idPiece}', function($request, $response, $args) use ($service
             }
             $appareil = $services['dao.appareil']->findOneById($homepieces[$i]->id_app);
             $appareils[] = $appareil;
-            /*if($bareme->id == 4){
-                $consoAppareils[] = ($heures * $appareil->conso_instant)*0.05;
-            }else{*/
-                $consoAppareils[] = ($heures * $appareil->conso_instant)/1000;
-            //}
-            $consoPiece += ($heures * $appareil->conso_instant)/1000;
+            if($bareme != null){
+                if($bareme->id == 4){
+                    $consoAppareils[] = ($heures * $appareil->conso_instant)*0.05;
+                    $consoPiece += ($heures * $appareil->conso_instant)*0.05;
+                }else{
+                    $consoAppareils[] = $heures * $appareil->conso_instant;
+                    $consoPiece += ($heures * $appareil->conso_instant);
+                }
+            }else{
+                $consoAppareils[] = 0;
+                $consoPiece += 0;
+            }
         }
+
+        $pieces = $services['dao.piece']->getAll();
+        $iconesPieces = [];
+
+        for($i = 0; $i < sizeof($pieces); $i++){
+            $icone = $services['dao.icone']->findOneById($pieces[$i]['id_ico']);
+            $iconesPieces[] = $icone->icone;
+        }
+
         require '../views/piece.php';
         $view = ob_get_clean();
         return $view;
