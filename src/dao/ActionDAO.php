@@ -30,7 +30,7 @@
         public function findLastAction($idHomePiece)
         {
             $action = R::findOne('SELECT * FROM action
-                WHERE id_hp = '.$idHomePiece.' ORDER BY date DESC');
+                WHERE id_hp = '.$idHomePiece.' ORDER BY date DESC LIMIT 1');
             return $action;
         }
 
