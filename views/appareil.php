@@ -67,6 +67,16 @@
           //var_dump($homepiece); 
           //var_dump($action); 
           //var_dump($bareme)
+          ?> 
+           <?php 
+          if($action != null)
+          {
+              $idB =$action->id_bareme;
+          }
+          else
+          {
+              $idB = 5 ;
+          }
           ?>
       </div>
       
@@ -85,20 +95,22 @@
               <i class="<?php echo($icone->icone) ?>"></i>
             </div>
               <form action="appareil/insert" method="post">
+                   
                     <!-- Turn on the divice -->
-                    <INPUT type= "radio" name="statuApp" value=3 <?php if($action->id_bareme == 3) { echo 'checked="checked"'; } ?> >
+                    <INPUT type= "radio" name="statuApp" value=3 <?php if( $idB== 3) { echo 'checked="checked"'; } ?> >
                     <label>Allumer</label> <br/>
                     
                     <!-- Only if standby mode is possible -->
                     <?php if($appareil->veille == 1){ ?>
-                        <INPUT type= "radio" name="statuApp" value=4 <?php if($action->id_bareme == 4) { echo 'checked="checked"'; } ?> >
+                        <INPUT type= "radio" name="statuApp" value=4 <?php if($idB == 4) { echo 'checked="checked"'; } ?> >
                         <label>Mise en veille</label> <br/>
                     <?php } ?>
                         
                     <!-- Turn offthe divice -->
-                    <INPUT type= "radio" name="statuApp" value=5 <?php if($action->id_bareme == 5) { echo 'checked="checked"'; } ?> >
+                    <INPUT type= "radio" name="statuApp" value=5 <?php if($idB== 5) { echo 'checked="checked"'; } ?> >
                     <label>Eteindre</label> <br/>
                     <input type="hidden"  name="id_hp" value="<?php echo $homepiece->id; ?>" />
+                    <input type="hidden"  name="id_piece" value="<?php echo $homepiece->id_piece; ?>" />
                     <input type="submit" class="btn btn-primary" value="Valider" /> 
                 </form>
               

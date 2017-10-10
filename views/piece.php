@@ -43,6 +43,9 @@
 
         <section class="content">
             <div class="row">
+                <center>
+                    <h1 style="color: #3c8dbc; font-weight: bold;">Consommation quotidienne de la pièce : <?php echo $consoPiece; ?> kW</h1>
+                </center><br><br>
                 <!-- start for -->
                 <?php for($i = 0; $i < sizeof($appareils); $i++) { ?>
                     <div class="col-md-4">
@@ -52,8 +55,11 @@
                                     <div class="col-md-2">
                                         <i class="fa fa-battery-full fa-2x" aria-hidden="true"></i>
                                     </div>
-                                    <div class="col-md-9">
-                                        <h3 class="box-title"><?php echo $appareils[$i]->libelle ?></h3>
+                                    <div class="col-md-6">
+                                        <h2 class="box-title"><?php echo $appareils[$i]->libelle ?></h2>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h3 style="color: green; font-weight: bold;"><?php echo $consoAppareils[$i] .' kW' ?></h3>
                                     </div>
                                 </div>
                             </div>

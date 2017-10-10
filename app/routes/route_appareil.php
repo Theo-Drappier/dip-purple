@@ -12,7 +12,12 @@
                 $homepiece = $services["dao.homepiece"]->findOneById($id);
                 $piece = $services["dao.piece"]->findOneById($homepiece->id_piece);
                 $appareil = $services["dao.appareil"]->findOneById($homepiece->id_app);
-                $bareme= $services["dao.bareme"]->findOneById($action->id_bareme);
+                if($action != null){
+                    $bareme= $services["dao.bareme"]->findOneById($action->id_bareme);
+                }else{
+                    $bareme = $services["dao.bareme"]->findOneById(5);
+                }
+                
                 $icone= $services["dao.icone"]->findOneById($appareil->id_ico);
 
                 require '../views/appareil.php';
@@ -31,5 +36,5 @@
             $action["id_hp"]=$_POST["id_hp"];
             $services["dao.action"]->insert($action);
   
-            return $response->withRedirect('/piece/'.$_POST["id_hp"]);
+            return $response->withRedirect('../piece/'.$_POST["id_piece"]);
         });
