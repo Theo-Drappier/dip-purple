@@ -32,71 +32,108 @@ class ActionDAO extends dao
         }
     }
 
-    public function findLastActions($idHomePiece)
-    {
-        $action = R::getAll('SELECT * FROM action
-            WHERE id_hp = '.$idHomePiece.' ORDER BY date DESC LIMIT 3');
-        return $action;
-    }
-
     public function findLastAction($idHomePiece)
     {
         $action = R::findOne($this->class, 'id_hp = '.$idHomePiece.' ORDER BY date DESC LIMIT 1');
         return $action;
     }
 
-    public function getDiffTime($actions)
+    public function findAllByToday($idHomePiece)
+    {
+        $today = date('Y-m-d');
+        $actions = R::getAll('SELECT * FROM action
+            WHERE id_hp = '.$idHomePiece.' AND date(action.date) = "'.$today.'" ORDER BY date');
+        return $actions;
+    }
+
+    public function findLastActionByDay($idHomePiece, $date)
+    {
+        $action = R::findOne($this->class,
+            'id_hp = ? AND date('.$this->class.'.date) = ? ORDER BY date DESC LIMIT 1',
+            [$idHomePiece, $date]);
+        return $action;
+    }
+
+    public function getDiffTimeByDay($actions)
     {
         $dateJourStamp = date('Y-m-d H:i:s');
         $dateJour = date('Y-m-d');
+        $result = [];
+        $result['on'] = 0;
+        $result['veille'] = 0;
 
-        $bareme1 = $actions[0]['id_bareme'];
-        if(isset($actions[1]['id_bareme'])){
-            $bareme2 = $actions[1]['id_bareme'];
-        }
-        if(isset($actions[2]['id_bareme'])){
-            $bareme3 = $actions[2]['id_bareme'];
-        }
-
-        if($bareme1 == 3 || $bareme1 == 4){
-            $dateTimeStart = $actions[0]['date'];
-            $dateTimeEnd = $dateJourStamp;
-        }
-        if($bareme1 == 5){
-            $dateTimeStart = $actions[1]['date'];
-            $dateTimeEnd = $actions[0]['date'];
-        }
-
-        $dateTimeStartExplode = explode(' ', $dateTimeStart);
-        $dateTimeEndExplode = explode(' ', $dateTimeEnd);
-
-        $dateStart = explode('-', $dateTimeStartExplode[0]);
-        $dateEnd = explode('-', $dateTimeEndExplode[0]);
-
-        $dateTimeStartFinal = null;
-        if($dateJour == $dateTimeEndExplode[0])
+        for($i = 0; $i < sizeof($actions); $i++)
         {
-            if($dateStart[1] == $dateEnd[1])
+            $bareme = $actions[$i]['id_bareme'];
+            if($i == 0)
             {
-                if($dateStart[2] != $dateEnd[2])
+                if($bareme == 5)
                 {
-                    $dateStart[2] = $dateEnd[2];
-                    $dateTimeStartExplode[1] = "00:00:00";
-                    $dateTimeStartExplode[0] = $dateStart[0].'-'.$dateStart[1].'-'.$dateStart[2];
-                    $dateTimeStart = $dateTimeStartExplode[0].' '.$dateTimeStartExplode[1];
+                    $dateJourExplode = explode('-', $dateJour);
+                    $dateJourExplode[2] -= 1;
+                    $dateHier = $dateJourExplode[0].'-'.$dateJourExplode[1].'-'.$dateJourExplode[2];
+                    $actionHier = $this->findLastActionByDay($actions[0]['id_hp'], $dateHier);
+                    if(!is_null($actionHier))
+                    {
+                        $baremeHier = $actionHier->id_bareme;
+                    }
+                    else {
+                        $baremeHier = 3;
+                    }
+                    $dateTimeStart = $dateJour.' 00:00:00';
+                    $dateTimeEnd = $actions[0]['date'];
+
+                    $dateTime1 = date_create($dateTimeStart);
+                    $dateTime2 = date_create($dateTimeEnd);
+                    $interval = date_diff($dateTime1, $dateTime2);
+                    if($baremeHier == 3)
+                    {
+                        $result['on'] += $interval->h;
+                    }
+                    else {
+                        $result['veille'] += $interval->h;
+                    }
                 }
             }
-            $datetime1 = date_create($dateTimeStart);
-            $datetime2 = date_create($dateTimeEnd);
-            $interval = date_diff($datetime1, $datetime2);
 
-            return $interval->h;
-        }else{
-            $interval = 0;
-            return $interval;
+            if($bareme != 5)
+            {
+                if(empty($actions[$i+1]))
+                {
+                    $dateTimeStart = $actions[$i]['date'];
+                    $dateTimeEnd = $dateJourStamp;
+
+                    $dateTime1 = date_create($dateTimeStart);
+                    $dateTime2 = date_create($dateTimeEnd);
+                    $interval = date_diff($dateTime1, $dateTime2);
+                    if($actions[$i]['id_bareme'] == 3)
+                    {
+                        $result['on'] += $interval->h;
+                    }
+                    else {
+                        $result['veille'] += $interval->h;
+                    }
+                }
+                else {
+                    $dateTimeStart = $actions[$i]['date'];
+                    $dateTimeEnd = $actions[$i+1]['date'];
+
+                    $dateTime1 = date_create($dateTimeStart);
+                    $dateTime2 = date_create($dateTimeEnd);
+                    $interval = date_diff($dateTime2, $dateTime1);
+
+                    if($actions[$i]['id_bareme'] == 3)
+                    {
+                        $result['on'] += $interval->h;
+                    }
+                    else {
+                        $result['veille'] += $interval->h;
+                    }
+                }
+            }
         }
 
-
+        return $result;
     }
 
     public function findAllByUser($user)

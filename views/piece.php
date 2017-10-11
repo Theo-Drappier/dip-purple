@@ -58,10 +58,10 @@
                                         echo($icone->icone);
                                         ?> fa-2x" aria-hidden="true"></i>
                                     </div>
-                                    <div class="col-md-6 col-xs-6">
+                                    <div class="col-md-5 col-xs-5">
                                         <h2 class="box-title"><?php echo $appareils[$i]->libelle ?></h2>
                                     </div>
-                                    <div class="col-md-4 col-xs-4">
+                                    <div class="col-md-5 col-xs-5">
                                         <h3 style="color: green; font-weight: bold;"><?php echo $consoAppareils[$i] .' kW' ?></h3>
                                     </div>
                                 </div>

@@ -55,7 +55,7 @@
     <section class="content">
       <div class="row">
           <center>
-              <h1 style="color: #3c8dbc; font-weight: bold;">CONSOMMATION QUOTIDIENNE DE LA FAMILLE : <?php echo $consoTotale/1000 ?> kW</h1><br /><br />
+              <h1 style="color: #3c8dbc; font-weight: bold;">CONSOMMATION DU JOUR DE LA FAMILLE : <?php echo $consoTotale/1000 ?> kW</h1><br /><br />
               <h2>
                   Le meilleur chasseur de la famille <?php echo $_SESSION['famille']->nom_fam; ?> est <?php echo $bestHunter->prenom; ?><br /><br />
               </h2>

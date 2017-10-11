@@ -5,17 +5,20 @@ $app->get('/appareil/{id}', function ($request, $response, $args) use ($services
         if($_SESSION['is_user']){
             ob_start();
             $id = $args['id'];
-            $actions = $services["dao.action"]->findLastActions($id);
+            $action = $services["dao.action"]->findLastAction($id);
+            $actionsDay = $services['dao.action']->findAllByToday($id);
+
+            $consoAppareil = 0;
 
             $homepiece = $services["dao.homepiece"]->findOneById($id);
             $piece = $services["dao.piece"]->findOneById($homepiece->id_piece);
             $appareil = $services["dao.appareil"]->findOneById($homepiece->id_app);
             $icone= $services["dao.icone"]->findOneById($appareil->id_ico);
 
-            if(!empty($actions)){
-    			$action = $actions[0];
-    			$heures = $services['dao.action']->getDiffTime($actions);
-    			$consoAppareil = ($heures * $appareil->conso_instant) / 1000;
+            if(!empty($actionsDay)){
+    			$heures = $services['dao.action']->getDiffTimeByDay($actionsDay);
+    			$consoAppareil += ($heures['on'] * $appareil->conso_instant) / 1000;
+                $consoAppareil += ($heures['veille'] * $appareil->conso_instant * 0.05) / 1000;
                 $bareme= $services["dao.bareme"]->findOneById($action['id_bareme']);
             }else{
     			$consoAppareil = 0;
