@@ -40,16 +40,16 @@ class ActionDAO extends dao
 
     public function findAllByToday($idHomePiece)
     {
-        $today = date('Y-m-d');
+        $today = date('Y-m-d H:i:s');
         $actions = R::getAll('SELECT * FROM action
-            WHERE id_hp = '.$idHomePiece.' AND date(action.date) = "'.$today.'" ORDER BY date');
+            WHERE id_hp = '.$idHomePiece.' AND action.date < "'.$today.'" ORDER BY date');
         return $actions;
     }
 
     public function findLastActionByDay($idHomePiece, $date)
     {
         $action = R::findOne($this->class,
-            'id_hp = ? AND date('.$this->class.'.date) = ? ORDER BY date DESC LIMIT 1',
+            'id_hp = ? AND '.$this->class.'.date < ? ORDER BY date DESC LIMIT 1',
             [$idHomePiece, $date]);
         return $action;
     }
