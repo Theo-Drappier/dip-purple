@@ -53,7 +53,16 @@ $app->post('/appareil/insert', function($request, $response, $args) use($service
 	{
 		if($lastAction->id_bareme != $_POST['statuApp'])
 		{
-			$services["dao.action"]->insert($action);
+            if($_POST['statuApp'] == 4)
+            {
+                if($lastAction->id_bareme != 5)
+                {
+                    $services["dao.action"]->insert($action);
+                }
+            }
+            else {
+                $services["dao.action"]->insert($action);
+            }
 		}
 	}
 	else {
@@ -66,6 +75,5 @@ $app->post('/appareil/insert', function($request, $response, $args) use($service
 
 	$actions = $services['dao.action']->findAllByUser($_SESSION['user']);
 	$_SESSION['userPoints'] = $services['dao.bareme']->getSumPointByUser($actions);
-
     return $response->withRedirect('../piece/'.$_POST["id_piece"]);
 });

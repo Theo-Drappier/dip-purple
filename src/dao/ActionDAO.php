@@ -40,9 +40,10 @@ class ActionDAO extends dao
 
     public function findAllByToday($idHomePiece)
     {
-        $today = date('Y-m-d H:i:s');
+        $todayAll = date('Y-m-d H:i:s');
+        $today = date('Y-m-d');
         $actions = R::getAll('SELECT * FROM action
-            WHERE id_hp = '.$idHomePiece.' AND action.date < "'.$today.'" ORDER BY date');
+            WHERE id_hp = '.$idHomePiece.' AND action.date < "'.$todayAll.'" AND date(action.date) = "'.$today.'" ORDER BY date');
         return $actions;
     }
 
