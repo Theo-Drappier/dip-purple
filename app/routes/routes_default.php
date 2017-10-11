@@ -100,3 +100,30 @@ $app->get('/', function ($request, $response, $args) use ($services){
         }
 
 });
+
+$app->get('/classement', function($request, $response, $args) use ($services)
+{
+    if($_SESSION['is_user']){
+
+        $home = $services['dao.home']->findOneByIdFamily($_SESSION['famille']->id);
+        $usersFamily = $services['dao.users']->findAllByFamily($_SESSION['famille']);
+        $arrayBestHunters = $services['dao.family']->getBestHunter($usersFamily);
+        $arrayBestHuntersPoints = $services['dao.family']->getBestHunterPoints($usersFamily);
+
+        $pieces = $services['dao.piece']->getAll();
+        $iconesPieces = [];
+
+        for($i = 0; $i < sizeof($pieces); $i++){
+            $piece = $services['dao.piece']->findOneById($pieces[$i]['id']);
+            $homepieces2 = $services['dao.homepiece']->findAllByHomePiece($home->id, $piece->id);
+            $icone = $services['dao.icone']->findOneById($piece->id_ico);
+            $iconesPieces[] = $icone->icone;
+        }
+        require '../views/classement.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+    else {
+        return $response->withRedirect('login');
+    }
+});

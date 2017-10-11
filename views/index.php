@@ -36,6 +36,11 @@
             <?php } ?>
           </ul>
         </li>
+        <li>
+            <a href="classement">
+                <i class="fa fa-table"></i> <span>Classement</span>
+            </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

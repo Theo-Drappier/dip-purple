@@ -35,4 +35,19 @@ class FamilyDAO extends dao
         arsort($pointsUser);
         return array_keys($pointsUser);
     }
+
+    public function getBestHunterPoints($users)
+    {
+        $actionDAO = ActionDAO::getInstances();
+        $baremeDAO = BaremeDAO::getInstances();
+        $pointsUser = [];
+        foreach($users as $u)
+        {
+            $actionsUser = $actionDAO->findAllByUser($u);
+            $pointsUser[$u->id] = $baremeDAO->getSumPointByUser($actionsUser);
+        }
+
+        arsort($pointsUser);
+        return $pointsUser;
+    }
 }
